@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Promocode
  *
- * @ORM\Table()
+ * @ORM\Table(name="ino_promocode")
  * @ORM\Entity
  */
 class Promocode
