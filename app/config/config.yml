@@ -70,6 +70,26 @@ fos_user:
     firewall_name: main
     user_class: Inodata\UserBundle\Entity\User
 
+sonata_admin:
+    
+
+    title:  Mucho Beat Project
+    title_logo: /bundles/sonataadmin/logo_title.png
+    templates:
+        # default global templates
+        layout:  SonataAdminBundle::standard_layout.html.twig
+        ajax:    SonataAdminBundle::ajax_layout.html.twig
+
+        # default actions templates, should extend a global templates
+        list:    SonataAdminBundle:CRUD:list.html.twig
+        show:    SonataAdminBundle:CRUD:show.html.twig
+        edit:    SonataAdminBundle:CRUD:edit.html.twig
+    dashboard:
+        blocks:
+            # display a dashboard block
+            - { position: left, type: sonata.admin.block.admin_list }
+
+
 sonata_cache:
     caches:
         apc:
@@ -93,4 +113,16 @@ knp_menu:
     twig:  # use "twig: false" to disable the Twig extension and the TwigRenderer
         template: knp_menu.html.twig
     templating: false # if true, enables the helper for PHP templates
-    default_renderer: twig # The renderer to use, list is also available by default        
+    default_renderer: twig # The renderer to use, list is also available by default   
+
+services:
+    admin.promo:
+        class: Inodata\PromoBundle\Admin\PromoAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Catálogos, label: Promos }
+        arguments: [ null, Inodata\PromoBundle\Entity\Promo, SonataAdminBundle:CRUD ]
+    admin.promocode:
+        class: Inodata\PromoBundle\Admin\PromocodeAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Catálogos, label: Códigos }
+        arguments: [ null, Inodata\PromoBundle\Entity\Promocode, SonataAdminBundle:CRUD ]
