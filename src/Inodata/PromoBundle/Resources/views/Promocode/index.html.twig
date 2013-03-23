@@ -1,0 +1,45 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Promocode list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Confirmation_token</th>
+                <th>Downloads</th>
+                <th>Is_valid</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('promocode_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.confirmationtoken }}</td>
+                <td>{{ entity.downloads }}</td>
+                <td>{{ entity.isvalid }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('promocode_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('promocode_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('promocode_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

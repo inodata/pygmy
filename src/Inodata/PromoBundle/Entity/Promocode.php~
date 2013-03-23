@@ -56,14 +56,6 @@ class Promocode
     }
 
     /**
-    *Constructor
-    **/
-    public function __construct()
-    {
-        $this->downloads = 0;
-    }
-
-    /**
      * Set confirmation_token
      *
      * @param string $confirmationToken

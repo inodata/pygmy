@@ -14,6 +14,7 @@ class PromoAdmin extends Admin
 		$formMapper
 			->add('name')
 			->add('filename', null, array('help'=>'Escribe el nombre exacto del archivo creado.'))
+			//->add('promocodes', 'sonata_type_model')
 		;
 	}
 

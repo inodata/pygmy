@@ -39,7 +39,7 @@ class Promo
      * @ORM\OneToMany(targetEntity="Promocode", mappedBy="Promo")
      */
     private $promocodes;
-
+    
     /**
      * Get id
      *
@@ -94,55 +94,5 @@ class Promo
     public function getFilename()
     {
         return $this->filename;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->promocodes = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-    *Return object as string to persist related models
-    *
-    *@return string
-    **/
-    public function __toString()
-    {
-        return $this->name;
-    }
-
-    /**
-     * Add promocodes
-     *
-     * @param \Inodata\PromoBundle\Entity\Promocode $promocodes
-     * @return Promo
-     */
-    public function addPromocode(\Inodata\PromoBundle\Entity\Promocode $promocodes)
-    {
-        $this->promocodes[] = $promocodes;
-    
-        return $this;
-    }
-
-    /**
-     * Remove promocodes
-     *
-     * @param \Inodata\PromoBundle\Entity\Promocode $promocodes
-     */
-    public function removePromocode(\Inodata\PromoBundle\Entity\Promocode $promocodes)
-    {
-        $this->promocodes->removeElement($promocodes);
-    }
-
-    /**
-     * Get promocodes
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getPromocodes()
-    {
-        return $this->promocodes;
     }
 }

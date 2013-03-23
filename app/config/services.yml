@@ -1,0 +1,11 @@
+services:
+    admin.promo:
+        class: Inodata\PromoBundle\Admin\PromoAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Catálogos, label: Promos }
+        arguments: [ null, Inodata\PromoBundle\Entity\Promo, SonataAdminBundle:CRUD ]
+    admin.promocode:
+        class: Inodata\PromoBundle\Admin\PromocodeAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Catálogos, label: Códigos }
+        arguments: [ null, Inodata\PromoBundle\Entity\Promocode, SonataAdminBundle:CRUD ]

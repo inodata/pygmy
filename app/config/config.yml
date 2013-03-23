@@ -1,6 +1,7 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
+    - { resource: services.yml }
 
 framework:
     #esi:             ~
@@ -52,6 +53,8 @@ doctrine:
         # if using pdo_sqlite as your database driver, add the path in parameters.yml
         # e.g. database_path: %kernel.root_dir%/data/data.db3
         # path:     %database_path%
+        types:
+            json: Sonata\Doctrine\Types\JsonType
 
     orm:
         auto_generate_proxy_classes: %kernel.debug%
@@ -68,11 +71,19 @@ swiftmailer:
 fos_user:
     db_driver: orm
     firewall_name: main
-    user_class: Inodata\UserBundle\Entity\User
+    #user_class: Inodata\UserBundle\Entity\User
+
+    # generate this entities with: sonata:easy-extends:generate SonataUserBundle --dest=src
+    user_class: Application\Sonata\UserBundle\Entity\User
+
+    group:
+        group_class: Application\Sonata\UserBundle\Entity\Group
+
+sonata_user:
+    security_acl: true
+    manager_type: orm
 
 sonata_admin:
-    
-
     title:  Mucho Beat Project
     title_logo: /bundles/sonataadmin/logo_title.png
     templates:
@@ -113,16 +124,4 @@ knp_menu:
     twig:  # use "twig: false" to disable the Twig extension and the TwigRenderer
         template: knp_menu.html.twig
     templating: false # if true, enables the helper for PHP templates
-    default_renderer: twig # The renderer to use, list is also available by default   
-
-services:
-    admin.promo:
-        class: Inodata\PromoBundle\Admin\PromoAdmin
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: Catálogos, label: Promos }
-        arguments: [ null, Inodata\PromoBundle\Entity\Promo, SonataAdminBundle:CRUD ]
-    admin.promocode:
-        class: Inodata\PromoBundle\Admin\PromocodeAdmin
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: Catálogos, label: Códigos }
-        arguments: [ null, Inodata\PromoBundle\Entity\Promocode, SonataAdminBundle:CRUD ]
+    default_renderer: twig # The renderer to use, list is also available by default 

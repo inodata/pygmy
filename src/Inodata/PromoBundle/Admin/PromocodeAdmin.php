@@ -9,13 +9,12 @@ use Sonata\AdminBundle\Form\FormMapper;
 
 class PromocodeAdmin extends Admin
 {
-	//TODO: verificar el componente de doble lista para la asignación de token
 	protected function configureFormFields(FormMapper $formMapper)
 	{
 		$formMapper
 			->add('confirmation_token')
-			//->add('promo', 'sonata_type_collection', array('required' => true))
-			->add('is_valid', null, array('required'=>false))
+			->add('promo', 'sonata_type_model', array('required' => true))
+			->add('is_valid', null, array('required'=>false,))
 		;
 	}
 
@@ -23,7 +22,7 @@ class PromocodeAdmin extends Admin
 	{
 		$dataGridMapper
 			->add('confirmation_token')
-			//->add('promo')
+			->add('promo')
 			->add('is_valid')
 		;
 	}
@@ -32,7 +31,7 @@ class PromocodeAdmin extends Admin
 	{
 		$listMapper
 			->addIdentifier('confirmation_token')
-			//->add('promo')
+			->add('promo')
 			->add('is_valid')
 		;
 	}
